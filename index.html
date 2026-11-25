@@ -1,15 +1,872 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
-    <title>Museo de la Historia Viva de Cayucupil</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Museo de la Historia Viva de Cayucupil</title>
+
+<meta name="description" content="Museo digital dedicado a preservar, compartir y difundir la historia, memoria y patrimonio de Cayucupil, Cañete, Chile.">
+
+<meta name="theme-color" content="#3A5849">
+
+<style>
+
+/* =================================
+   1. IDENTIDAD VISUAL
+================================= */
+
+:root {
+    --bosque: #3A5849;
+    --territorial: #417366;
+    --turquesa: #4B8A8B;
+    --salvia: #95A58E;
+    --arena: #E3DDCA;
+    --ocre: #C3A76C;
+    --blanco: #F9F8F4;
+    --texto: #393D35;
+    --oscuro: #26382F;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--blanco);
+    color: var(--texto);
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.7;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* =================================
+   2. ENCABEZADO
+================================= */
+
+header {
+    background: var(--bosque);
+    color: var(--blanco);
+    text-align: center;
+    padding: 24px 20px;
+    border-bottom: 4px solid var(--ocre);
+}
+
+.encabezado-etiqueta {
+    font-family: Arial, sans-serif;
+    color: var(--arena);
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+header h1 {
+    font-weight: normal;
+    font-size: clamp(25px, 4vw, 39px);
+    line-height: 1.3;
+}
+
+.encabezado-descripcion {
+    font-size: 13px;
+    color: var(--salvia);
+    margin-top: 7px;
+    letter-spacing: 1px;
+}
+
+/* =================================
+   3. NAVEGACIÓN
+================================= */
+
+nav {
+    background: var(--territorial);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 28px;
+    padding: 15px 20px;
+    font-family: Arial, sans-serif;
+}
+
+nav a {
+    color: var(--blanco);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color .2s;
+}
+
+nav a:hover {
+    color: var(--ocre);
+}
+
+/* =================================
+   4. PORTADA PRINCIPAL
+================================= */
+
+.portada {
+    min-height: 570px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(35, 54, 43, .82),
+            rgba(35, 54, 43, .18)
+        ),
+        url("DJI_0964.JPG") center 48% / cover no-repeat;
+
+    display: flex;
+    align-items: center;
+    padding: 70px 10%;
+    color: white;
+}
+
+.portada-contenido {
+    max-width: 720px;
+}
+
+.portada-etiqueta {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: var(--arena);
+    text-transform: uppercase;
+    margin-bottom: 22px;
+}
+
+.portada h2 {
+    font-size: clamp(40px, 6vw, 68px);
+    font-weight: normal;
+    line-height: 1.13;
+    margin-bottom: 25px;
+}
+
+.portada p {
+    font-size: 18px;
+    max-width: 580px;
+    line-height: 1.8;
+}
+
+.boton {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 13px 26px;
+    background: var(--turquesa);
+    border: 1px solid var(--arena);
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: .3s;
+}
+
+.boton:hover {
+    background: var(--bosque);
+}
+
+/* =================================
+   5. ELEMENTOS GENERALES
+================================= */
+
+.seccion {
+    max-width: 1150px;
+    margin: auto;
+    padding: 85px 35px;
+}
+
+.etiqueta {
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+    color: var(--turquesa);
+    letter-spacing: 3px;
+    font-size: 11px;
+    margin-bottom: 15px;
+}
+
+.titulo-seccion {
+    font-size: clamp(29px, 4vw, 42px);
+    font-weight: normal;
+    color: var(--bosque);
+    line-height: 1.3;
+    margin-bottom: 22px;
+}
+
+.linea {
+    width: 65px;
+    height: 3px;
+    background: var(--ocre);
+    margin: 22px 0;
+}
+
+.texto-seccion {
+    font-size: 17px;
+    line-height: 1.9;
+    max-width: 780px;
+}
+
+/* =================================
+   6. PRESENTACIÓN DEL MUSEO
+================================= */
+
+.presentacion {
+    background: var(--arena);
+}
+
+.presentacion-contenido {
+    max-width: 850px;
+    margin: auto;
+    text-align: center;
+}
+
+.presentacion .linea {
+    margin: 22px auto;
+}
+
+.presentacion .texto-seccion {
+    margin: auto;
+}
+
+/* =================================
+   7. SECCIONES DE CONTENIDO
+================================= */
+
+.fondo-claro {
+    background: var(--blanco);
+}
+
+.fondo-salvia {
+    background: #E4E9E0;
+}
+
+.grid-tarjetas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 38px;
+}
+
+.tarjeta {
+    background: white;
+    border: 1px solid #ddd8c9;
+    border-bottom: 4px solid var(--turquesa);
+    padding: 32px 26px;
+    transition: transform .25s, box-shadow .25s;
+}
+
+.tarjeta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,.09);
+}
+
+.numero-tarjeta {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--ocre);
+    margin-bottom: 18px;
+}
+
+.tarjeta h3 {
+    font-size: 23px;
+    color: var(--bosque);
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+.tarjeta p {
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.enlace-tarjeta {
+    color: var(--turquesa);
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* =================================
+   8. ARCHIVO FOTOGRÁFICO
+================================= */
+
+.archivo {
+    background: var(--bosque);
+    color: var(--blanco);
+}
+
+.archivo .titulo-seccion {
+    color: var(--blanco);
+}
+
+.archivo .etiqueta {
+    color: var(--ocre);
+}
+
+.archivo .texto-seccion {
+    color: var(--arena);
+}
+
+.archivo-contenedor {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 45px;
+    align-items: center;
+    margin-top: 35px;
+}
+
+.foto-archivo {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    border: 5px solid rgba(255,255,255,.15);
+}
+
+.archivo-descripcion {
+    font-size: 17px;
+    line-height: 1.9;
+}
+
+/* =================================
+   9. RECORRIDOS VIRTUALES
+================================= */
+
+.recorridos {
+    background: var(--arena);
+}
+
+.recorrido-destacado {
+    background: var(--bosque);
+    color: white;
+    padding: 45px;
+    margin-top: 35px;
+    text-align: center;
+    border-top: 5px solid var(--ocre);
+}
+
+.recorrido-destacado h3 {
+    font-size: 29px;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+.recorrido-destacado p {
+    max-width: 650px;
+    margin: auto;
+    line-height: 1.8;
+    color: var(--arena);
+}
+
+.recorrido-destacado .boton {
+    margin-top: 25px;
+}
+
+/* =================================
+   10. PARTICIPACIÓN COMUNITARIA
+================================= */
+
+.comunidad {
+    background: var(--territorial);
+    color: white;
+    text-align: center;
+}
+
+.comunidad .titulo-seccion {
+    color: white;
+}
+
+.comunidad .etiqueta {
+    color: var(--arena);
+}
+
+.comunidad .linea {
+    margin: 22px auto;
+}
+
+.comunidad p {
+    max-width: 750px;
+    margin: auto;
+    font-size: 17px;
+    line-height: 1.9;
+}
+
+/* =================================
+   11. PIE DE PÁGINA
+================================= */
+
+footer {
+    background: var(--oscuro);
+    color: var(--arena);
+    padding: 45px 25px;
+    text-align: center;
+    border-top: 4px solid var(--ocre);
+}
+
+footer h3 {
+    font-size: 23px;
+    font-weight: normal;
+    margin-bottom: 12px;
+}
+
+footer p {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+footer .copyright {
+    margin-top: 22px;
+    color: var(--salvia);
+    font-size: 11px;
+}
+
+/* =================================
+   12. ADAPTACIÓN A CELULARES
+================================= */
+
+@media (max-width: 850px) {
+
+    .grid-tarjetas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .archivo-contenedor {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    header {
+        padding: 23px 14px;
+    }
+
+    nav {
+        gap: 13px 18px;
+        padding: 15px 10px;
+    }
+
+    nav a {
+        font-size: 10px;
+    }
+
+    .portada {
+        min-height: 490px;
+        padding: 45px 25px;
+        background-position: center;
+    }
+
+    .portada h2 {
+        font-size: 42px;
+    }
+
+    .portada p {
+        font-size: 16px;
+    }
+
+    .seccion {
+        padding: 60px 22px;
+    }
+
+    .grid-tarjetas {
+        grid-template-columns: 1fr;
+    }
+
+    .recorrido-destacado {
+        padding: 30px 20px;
+    }
+
+    .foto-archivo {
+        height: 250px;
+    }
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-<h1>Museo de la Historia Viva</h1>
-<p>Museo virtual enfocado en resguardar el patrimonio y memoria de Cayucupil.</p>
-<img src="DJI_0964.JPG" width="600" alt="Paisaje de Cayucupil">
-<h2>Primer recorrido</h2>
-<p>Pronto disponible</p>
+<!-- ENCABEZADO -->
+
+<header>
+
+    <div class="encabezado-etiqueta">
+        Memoria · Patrimonio · Identidad
+    </div>
+
+    <h1>Museo de la Historia Viva de Cayucupil</h1>
+
+    <div class="encabezado-descripcion">
+        Un encuentro con la historia de nuestro territorio
+    </div>
+
+</header>
+
+
+<!-- MENÚ -->
+
+<nav>
+
+    <a href="#inicio">Inicio</a>
+
+    <a href="#territorio">El territorio</a>
+
+    <a href="#memoria">Memoria histórica</a>
+
+    <a href="#archivo">Archivo</a>
+
+    <a href="#historias">Historias de vida</a>
+
+    <a href="#recorridos">Recorridos 360°</a>
+
+</nav>
+
+
+<!-- PORTADA -->
+
+<section class="portada" id="inicio">
+
+    <div class="portada-contenido">
+
+        <div class="portada-etiqueta">
+            Valle de Cayucupil · Cañete · Chile
+        </div>
+
+        <h2>
+            Historias de un valle vivo
+        </h2>
+
+        <p>
+            Un viaje por la memoria de sus habitantes,
+            los saberes de sus comunidades y las
+            transformaciones de un territorio que
+            guarda innumerables historias.
+        </p>
+
+        <a href="#territorio" class="boton">
+            Explorar el museo
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- PRESENTACIÓN -->
+
+<section class="presentacion seccion" id="territorio">
+
+    <div class="presentacion-contenido">
+
+        <div class="etiqueta">
+            Nuestro territorio
+        </div>
+
+        <h2 class="titulo-seccion">
+            Un territorio, muchas historias
+        </h2>
+
+        <div class="linea"></div>
+
+        <p class="texto-seccion">
+            Cayucupil es un territorio de historias,
+            tradiciones y experiencias compartidas.
+
+            Este museo digital nace con el propósito
+            de rescatar, preservar y difundir la memoria
+            de sus habitantes, sus prácticas culturales
+            y las transformaciones de su territorio
+            a través del tiempo.
+
+            Cada fotografía, relato y testimonio constituye
+            una pieza de la memoria colectiva local.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- MEMORIA HISTÓRICA -->
+
+<section class="seccion fondo-claro" id="memoria">
+
+    <div class="etiqueta">
+        Patrimonio e historia
+    </div>
+
+    <h2 class="titulo-seccion">
+        Explora nuestra memoria
+    </h2>
+
+    <div class="linea"></div>
+
+    <p class="texto-seccion">
+        Diferentes formas de aproximarnos a la historia
+        y al patrimonio de Cayucupil.
+    </p>
+
+    <div class="grid-tarjetas">
+
+        <article class="tarjeta">
+
+            <div class="numero-tarjeta">
+                COLECCIÓN 01
+            </div>
+
+            <h3>Memoria histórica</h3>
+
+            <p>
+                Fotografías antiguas, documentos,
+                acontecimientos y registros que
+                reconstruyen la historia local.
+            </p>
+
+            <span class="enlace-tarjeta">
+                Colección en desarrollo
+            </span>
+
+        </article>
+
+
+        <article class="tarjeta" id="historias">
+
+            <div class="numero-tarjeta">
+                COLECCIÓN 02
+            </div>
+
+            <h3>Historias de vida</h3>
+
+            <p>
+                Relatos y testimonios de habitantes
+                que han contribuido a construir
+                la identidad de Cayucupil.
+            </p>
+
+            <span class="enlace-tarjeta">
+                Archivo en desarrollo
+            </span>
+
+        </article>
+
+
+        <article class="tarjeta">
+
+            <div class="numero-tarjeta">
+                COLECCIÓN 03
+            </div>
+
+            <h3>Saberes y tradiciones</h3>
+
+            <p>
+                Oficios, prácticas campesinas,
+                conocimientos tradicionales
+                y expresiones culturales.
+            </p>
+
+            <span class="enlace-tarjeta">
+                Colección en desarrollo
+            </span>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- ARCHIVO FOTOGRÁFICO -->
+
+<section class="archivo seccion" id="archivo">
+
+    <div class="etiqueta">
+        Archivo patrimonial
+    </div>
+
+    <h2 class="titulo-seccion">
+        Fotografías que cuentan historias
+    </h2>
+
+    <div class="linea"></div>
+
+    <div class="archivo-contenedor">
+
+        <div>
+
+            <img
+                src="DJI_0964.JPG"
+                alt="Registro fotográfico de Cayucupil"
+                class="foto-archivo"
+            >
+
+        </div>
+
+        <div class="archivo-descripcion">
+
+            <p>
+                Las fotografías permiten reconstruir
+                momentos, reconocer lugares y recuperar
+                experiencias que forman parte de
+                nuestra historia colectiva.
+            </p>
+
+            <br>
+
+            <p>
+                Este archivo busca reunir fotografías
+                familiares, registros históricos y
+                documentos que permitan preservar
+                la memoria de Cayucupil.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- HISTORIAS DE VIDA -->
+
+<section class="seccion fondo-salvia">
+
+    <div class="etiqueta">
+        Memoria oral
+    </div>
+
+    <h2 class="titulo-seccion">
+        Las personas son nuestra historia
+    </h2>
+
+    <div class="linea"></div>
+
+    <p class="texto-seccion">
+        Las experiencias de quienes han habitado
+        este territorio constituyen un patrimonio
+        invaluable.
+
+        A través de entrevistas, conversaciones
+        y relatos de vida, buscamos preservar
+        las voces, experiencias y recuerdos
+        de distintas generaciones.
+    </p>
+
+</section>
+
+
+<!-- RECORRIDOS VIRTUALES -->
+
+<section class="recorridos seccion" id="recorridos">
+
+    <div class="etiqueta">
+        Exploración territorial
+    </div>
+
+    <h2 class="titulo-seccion">
+        Recorre Cayucupil
+    </h2>
+
+    <div class="linea"></div>
+
+    <p class="texto-seccion">
+        Descubre los lugares significativos del
+        territorio mediante experiencias digitales
+        e interactivos recorridos panorámicos.
+    </p>
+
+    <div class="recorrido-destacado">
+
+        <h3>Museo y recorridos virtuales 360°</h3>
+
+        <p>
+            Próximamente podrás explorar espacios,
+            paisajes y lugares históricos mediante
+            fotografías panorámicas interactivas,
+            acompañadas de relatos y registros
+            de memoria local.
+        </p>
+
+        <span class="boton">
+            Próximamente disponible
+        </span>
+
+    </div>
+
+</section>
+
+
+<!-- PARTICIPACIÓN COMUNITARIA -->
+
+<section class="comunidad seccion">
+
+    <div class="etiqueta">
+        Construcción colectiva
+    </div>
+
+    <h2 class="titulo-seccion">
+        La historia la construimos entre todos
+    </h2>
+
+    <div class="linea"></div>
+
+    <p>
+        Este museo es una invitación a la comunidad
+        de Cayucupil a compartir sus fotografías,
+        recuerdos, testimonios y conocimientos.
+
+        Porque preservar nuestra historia es también
+        reconocer a las personas que han dado
+        vida a este territorio.
+    </p>
+
+</section>
+
+
+<!-- PIE DE PÁGINA -->
+
+<footer>
+
+    <h3>
+        Museo de la Historia Viva de Cayucupil
+    </h3>
+
+    <p>
+        Memoria · Patrimonio · Identidad
+    </p>
+
+    <p>
+        Cayucupil · Cañete · Región del Biobío · Chile
+    </p>
+
+    <div class="copyright">
+        Proyecto de rescate y puesta en valor
+        de la memoria y patrimonio local.
+    </div>
+
+</footer>
 
 </body>
 </html>
